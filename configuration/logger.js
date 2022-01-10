@@ -1,4 +1,4 @@
-const { createLogger, transports, transport}= require('winston')
+const { createLogger, transports, transport, info}= require('winston')
 
 const infoLogger=createLogger({
     transports:[
@@ -8,5 +8,11 @@ const infoLogger=createLogger({
         })
     ]
 })
+
+infoLogger.stream={
+    write: (message,encoding)=>{
+        infoLogger.info(message)
+    }
+}
 
 module.exports=infoLogger
